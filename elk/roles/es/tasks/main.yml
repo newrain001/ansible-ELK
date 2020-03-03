@@ -1,0 +1,23 @@
+- name: copy es
+  copy: src={{ es_package }} dest=/tmp/ owner=root group=root
+- name: uncompression es
+  shell: tar zxf /tmp/{{ es_package }} -C /usr/local
+- name: create es user
+  user: name=es
+- name: copy es config
+  template: src=elasticsearch.yml dest={{ es_dir }}/config/ owner=es group=es
+- name: update es config
+  shell: sed -i "{{ item }}" {{ es_dir }}/config/{{ config_name }}
+  with_items:
+    - 's/node.name.*/node.name: {{ node_name }}/'
+    - 's/node.master.*/node.master: {{ node_master }}/'
+    - 's/node.data.*/node.data: {{ node_data }}/'
+    - 's/network.host.*/network.host: {{ host }}/'
+- name: change owner and group
+  file: path={{ es_dir }} owner=es group=es recurse=yes
+- name: mkdir directory for es data
+  file: dest=/data/elasticsearch/data mode=0755 state=directory owner=es group=es
+- name: mkdir directory for es log
+  file: dest=/data/elasticsearch/logs mode=0755 state=directory owner=es group=es
+- name: delete es compression files
+  shell: rm -f /tmp/{{ es_package }}

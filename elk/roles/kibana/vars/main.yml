@@ -1,0 +1,4 @@
+kibana_package: kibana-6.5.4-linux-x86_64.tar.gz
+kibana_dir: /usr/local/kibana-6.5.4-linux-x86_64
+kibana_ip: 192.168.0.111
+es_ip: 192.168.0.111

@@ -1,0 +1,5 @@
+kafka_package: kafka_2.11-2.0.0.tgz
+kafka_dir: /usr/local/
+server1: 192.168.0.115
+server2: 192.168.0.116
+server3: 192.168.0.117

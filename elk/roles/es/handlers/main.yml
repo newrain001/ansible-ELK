@@ -1,0 +1,5 @@
+- name: mkdir Subdirectory
+  file: dest=/data/elasticsearch/{{ item }} mode=0755 state=directory owner=es group=es
+  with_items:
+    - logs
+    - data

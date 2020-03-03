@@ -1,0 +1,8 @@
+- name: copy kibana
+  copy: src={{ kibana_package }} dest=/tmp/ owner=root group=root
+- name: uncompression kibana
+  shell: tar zxf /tmp/{{ kibana_package }} -C /usr/local
+- name: copy kibana config
+  template: src=kibana.yml dest={{ kibana_dir }}/config/
+- name: delete kibana compression files
+  shell: rm -f /tmp/{{ kibana_package }}

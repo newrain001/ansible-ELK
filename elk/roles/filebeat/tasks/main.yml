@@ -1,0 +1,6 @@
+- name: copy filebeat
+  copy: src={{ filebeat_package }} dest=/tmp/ owner=root group=root
+- name: uncompression filebeat
+  shell: tar zxf /tmp/{{ filebeat_package }} -C /usr/local
+- name: copy filebeat config file
+  template: src=filebeat.yml dest={{ filebeat_dir }}/  mode=0755

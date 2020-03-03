@@ -1,0 +1,16 @@
+- name: copy kafka
+  copy: src={{ kafka_package }} dest=/tmp/ owner=root group=root
+- name: uncompression kafka
+  shell: tar zxf /tmp/{{ kafka_package }} -C /usr/local
+- name: copy kafka config
+  template: src=server.properties dest={{ kafka_dir }}/kafka_2.11-2.0.0/config
+- name: copy zookeeper config
+  template: src=zookeeper.properties dest={{ kafka_dir }}/kafka_2.11-2.0.0/config
+- name: mkdir directory for kafka data
+  file: dest=/opt/data/kafka/logs mode=0755 state=directory
+- name: mkdir directory for zookeeper
+  shell: mkdir -p /opt/data/zookeeper/{data,logs}
+- name: zookeeper myid
+  shell: echo {{ server_id }} > /opt/data/zookeeper/data/myid
+- name: delete kafka compression files
+  shell: rm -f /tmp/{{ kafka_package }}

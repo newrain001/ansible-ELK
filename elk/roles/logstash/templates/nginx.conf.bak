@@ -1,0 +1,23 @@
+input {
+    file {
+        path => "/var/log/nginx/access.log"
+        start_position => beginning
+    }
+}
+filter {
+    grok {
+        match => { "message" => "%{COMBINEDAPACHELOG} %{QS:x_forwarded_for}"}    
+    }    
+    date {
+        match => [ "timestamp" , "dd/MMM/YYYY:HH:mm:ss Z" ]    
+    }    
+    geoip {
+        source => "clientip"    
+    }
+}
+output {
+        stdout {
+                codec => rubydebug
+        }
+}
+

@@ -1,0 +1,4 @@
+nginx_ip: 192.168.0.112
+kibana_ip: 192.168.0.112
+es_head_ip: 192.168.0.112
+nginx_dir: /etc/nginx

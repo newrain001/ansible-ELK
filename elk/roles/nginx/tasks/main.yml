@@ -1,0 +1,11 @@
+- name: yum install epel
+  yum: name=epel-release state=latest
+- name: yum install nginx
+  yum: name=nginx state=latest
+- name: yum install htpasswd
+  yum: name=httpd-tools state=latest
+- name: copy conf file
+  template: src=nginx.conf dest={{ nginx_dir }}/ backup=yes owner=root group=root mode=0644
+- name: copy passwd file
+  copy: src=passwd.db dest={{ nginx_dir }}/ owner=root group=root mode=0644
+  notify: restart nginx

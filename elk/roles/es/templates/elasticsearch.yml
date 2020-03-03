@@ -1,0 +1,23 @@
+cluster.name: bjbpe01-elk
+node.name: elk01
+node.master: true
+node.data: true
+path.data: /data/elasticsearch/data
+path.logs: /data/elasticsearch/logs
+bootstrap.memory_lock: false
+bootstrap.system_call_filter: false
+network.host: 0.0.0.0
+http.port: 9200
+{% if node_name == 'elk-112' %}
+discovery.zen.ping.unicast.hosts: ["{{ es2 }}", "{{ es3 }}"]
+{% elif node_name == 'elk-113' %}
+discovery.zen.ping.unicast.hosts: ["{{ es1 }}", "{{ es3 }}"]
+{% elif node_name == 'elk-114' %}
+discovery.zen.ping.unicast.hosts: ["{{ es1 }}", "{{ es2 }}"]
+{% endif %}
+discovery.zen.minimum_master_nodes: 2
+discovery.zen.ping_timeout: 150s
+discovery.zen.fd.ping_retries: 10
+client.transport.ping_timeout: 60s
+http.cors.enabled: true
+http.cors.allow-origin: "*"

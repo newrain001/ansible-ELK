@@ -1,0 +1,10 @@
+- name: copy logstash software
+  copy: src={{ logstash_package }} dest=/tmp/ owner=root group=root
+- name: uncompression logstash
+  shell: tar zxf /tmp/{{ logstash_package }} -C /usr/local
+- name: mkdir config files dir
+  file: dest={{ logstash_dir }}/conf.d mode=0755 state=directory
+- name: copy logstash config
+  template: src={{ config_name }} dest={{ logstash_dir }}/conf.d/
+- name: delete logstash compression files
+  shell: rm -f /tmp/{{ logstash_package }}

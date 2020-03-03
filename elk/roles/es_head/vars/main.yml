@@ -1,0 +1,6 @@
+node_package: node-v4.4.7-linux-x64.tar.gz
+js_package: phantomjs-2.1.1-linux-x86_64.tar.bz2
+node_dir: /usr/local/node-v4.4.7-linux-x64
+head_package: elasticsearch-head-master.zip
+head_dir: /usr/local/elasticsearch-head-master
+head_ip: 1.1.1.1

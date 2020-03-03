@@ -1,0 +1,8 @@
+filebeat_package: filebeat-6.5.4-linux-x86_64.tar.gz
+filebeat_dir: /usr/local/filebeat-6.5.4-linux-x86_64 
+log_path: /var/log/nginx/access.log
+kafka1: 192.168.0.115
+kafka2: 192.168.0.116
+kafka3: 192.168.0.117
+topic_name: nginx
+

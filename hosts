@@ -1,0 +1,35 @@
+[java]
+172.31.47.142
+172.31.47.143
+172.31.47.144
+172.31.47.148
+172.31.47.145
+172.31.47.146
+172.31.47.147
+
+[kafka]
+172.31.47.145 server_id=1
+172.31.47.146 server_id=2
+172.31.47.147 server_id=3
+
+[elasticsearch]
+172.31.47.142  node_name=elk-112  node_master=true node_data=true host=172.31.47.142
+172.31.47.143 node_name=elk-113 node_master=true node_data=true host=172.31.47.143
+172.31.47.144 node_name=elk-114 node_master=true node_data=true host=172.31.47.144
+
+[es_head]
+172.31.47.142
+
+[logstash]
+172.31.47.148
+
+[kibana]
+172.31.47.142
+
+[nginx]
+172.31.47.142
+
+[filebeat]
+172.31.47.149
+
+

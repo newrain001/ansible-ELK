@@ -1,0 +1,3 @@
+logstash_package: logstash-6.5.4.tar.gz
+logstash_dir: /usr/local/logstash-6.5.4
+config_name: nginx.conf

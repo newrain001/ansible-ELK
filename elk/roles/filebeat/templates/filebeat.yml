@@ -1,0 +1,11 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    -  {{ log_path }}
+  json.keys_under_root: true
+  json.add_error_key: true
+  json.message_key: log
+
+output.kafka:   
+  hosts: ["{{ kafka1 }}:9092","{{ kafka2 }}:9092","{{ kafka3 }}:9092"]
+  topic: '{{ topic_name }}'

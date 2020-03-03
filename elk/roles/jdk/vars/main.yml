@@ -1,0 +1,3 @@
+java_package_name: jdk-8u211-linux-x64.tar.gz
+java_env_dir: /etc/profile.d
+java_dir: /usr/local/jdk1.8.0_211

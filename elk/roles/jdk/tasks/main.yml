@@ -1,0 +1,12 @@
+- name: copy jdk software
+  copy: src={{ java_package_name }} dest=/tmp/ owner=root group=root
+- name: uncompression jdk software
+  shell: tar -xf /tmp/{{ java_package_name }} -C /usr/local/
+- name: copy jdk env 
+  copy: src=java.sh dest={{ java_env_dir }}/ owner=root group=root mode=0644
+- name: rename java
+  shell: mv {{ java_dir }} /usr/local/java
+- name: enforce env
+  shell: source {{ java_env_dir }}/java.sh
+- name: delete jdk compressin files
+  shell: rm -f /tmp/{{ java_package_name }}

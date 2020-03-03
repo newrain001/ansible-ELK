@@ -1,0 +1,28 @@
+- name: copy node
+  copy: src={{ node_package }} dest=/tmp/ owner=root group=root
+- name: uncompression node
+  shell: tar zxf /tmp/{{ node_package }} -C /usr/local/
+- name: copy node env file
+  template: src=node.sh dest=/etc/profile.d owner=es group=es
+- name: copy head plugin
+  copy: src={{ head_package }} dest=/tmp/ owner=root group=root
+- name: yum install unzip
+  yum:  name=unzip state=latest
+- name: yum install bzip2
+  yum:  name=bzip2 state=latest
+- name: uncopmression head plugin
+  shell: unzip /tmp/{{ head_package }} -d /usr/local/
+- name: copy head config
+  template: src=app.js dest={{ head_dir }}/_site/ owner=es group=es
+- name: copy head config2
+  template: src=Gruntfile.js dest={{ head_dir }}/ owner=es group=es
+- name: change owner and group
+  file: path={{ head_dir }} owner=es group=es
+- name: mkdir directory for js file
+  file: dest=/tmp/phantomjs mode=0777 state=directory
+- name: copy phantomjs plugin
+  copy: src={{ js_package }} dest=/tmp/phantomjs mode=0777
+- name: delete node compression files
+  shell: rm -f /tmp/{{ node_package }}
+- name: delete head compression files
+  shell: rm -f /tmp/{{ head_package }}

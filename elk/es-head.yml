@@ -1,0 +1,4 @@
+- hosts: es_head
+  remote_user: root
+  roles:
+    - es_head
